@@ -1,0 +1,159 @@
+---
+# macro commands 
+
+# turn on card and turn on lv for select channels
+- tracker_power_turn_on_lv:
+    crate: 0 
+    card: 1
+    conn: 
+      - 1
+      - 2
+
+# turn on hv and set channels 
+- tracker_power_turn_on_hv:
+    crate: 0
+    card: 1
+    chan:
+        - 1
+        - 4
+        - 7
+    pset: 255
+    vset: 250
+
+- tracker_power_turn_on_hv: # defaults to 250 V in absense of a spefication
+    crate: 0
+    card: 1
+    chan: [1,4,7]
+
+# ramp down HV
+- tracker_power_ramp_down_hv: 
+    crate: 0
+    card: 1
+    chan: [0]
+
+# turn off hv
+- tracker_power_power_off_hv:
+    crate: 0
+    card: 1
+
+# turn off low voltage and card
+- tracker_power_turn_off_lv: 
+    crate: 0
+    card: 1
+    conn: [0]
+
+
+
+
+# commands mapping to tracker crate commands 
+
+# command to turn on tracker power crate cards
+- tracker_power_card_on:
+    crate0: 
+      - 1 
+      - 7
+    crate1:
+      - 1
+
+# command to turn off tracker power crate cards
+- tracker_power_card_off:
+    crate1:
+      - 7
+
+# command to turn on tracker lv power on specified connectors or an entire card
+- tracker_power_lv_on:
+    crate0: 
+      card2:
+        - 2
+      card3: [1,2]
+
+# command to turn off tracker lv power on specified connectors or the entire card
+- tracker_power_lv_off:
+    crate1:
+      card4:
+        - 1
+        - 3
+      card8:
+        - 0 # all three connectors of card 8
+
+# command to turn on HV power supply (does not turn on HV)
+- tracker_power_hv_supply_on:
+    crate1:
+      - 1
+      - 2
+    crate0: [1,2]
+
+# command to turn off HV power supply (only after HV is already off)
+- tracker_power_hv_supply_off:
+    crate1:
+      - 1
+      - 2
+    crate0: [1,2]
+
+# command to set HV setting on card power supply 
+- tracker_power_hv_supply_set:
+    set_v: 200 # need to send a new command for every unique voltage; defaults to 250 if not specified
+    crate1: 
+      - 1
+      - 2
+      - 4
+    crate0: 
+      - 4
+      - 5
+
+- tracker_power_hv_supply_set:
+    crate1: 
+      - 1
+      - 2
+      - 4
+    crate0: 
+      - 1
+
+
+# command to set HV setting on particular HV channel
+- tracker_power_hv_channel_set:
+    set_v: 200 # need to send a new command for every unique voltage; defaults to 250 if not specified
+    crate1:
+      card1:
+        - 1
+        - 17
+
+- tracker_power_hv_channel_set:
+    crate1:
+      card1:
+       - 0
+
+# command to turn on HV for a channel or card
+- tracker_power_hv_on:
+    crate0:
+      card1:
+        - 0
+      card2:
+        - 1
+
+- tracker_power_hv_on:
+    crate0:
+      card1:
+        - 0
+      card2:
+        - 1
+
+# command to turn off HV for a channel or card
+- tracker_power_hv_off:
+    crate0:
+      card1:
+        - 0
+      card2:
+        - 1
+
+- tracker_power_hv_off:
+    crate0:
+      card1:
+        - 0
+      card2:
+        - 0
+    crate1:
+      card1:
+        - 1
+
+# command... 

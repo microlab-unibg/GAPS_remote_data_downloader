@@ -1,0 +1,4 @@
+add_executable(tracker_power_test1 tracker_power_test1.cpp)
+add_executable(tracker_power_test2 tracker_power_test2.cpp)
+target_link_libraries(tracker_power_test1  spdlog bfsw)
+target_link_libraries(tracker_power_test2  spdlog bfsw)

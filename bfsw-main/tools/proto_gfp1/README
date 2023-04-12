@@ -1,0 +1,6 @@
+brent sent me some raw data from the backend DAQ in its current state (as of August 19, 2021). 
+The code in this folder parses the raw data and then transmits the packets over UDP into some
+proto FSW that I wrote to handle the backend DAQ data.  This way we are running the full data
+through the pipeline end to end.
+
+The raw data file that brent sent is DAT_20210819_183105.dat

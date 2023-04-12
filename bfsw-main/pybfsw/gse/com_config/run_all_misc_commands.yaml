@@ -1,0 +1,6 @@
+---
+# i added a sleep command in case we need it at some point 
+# ie maybe we want to turn on lvps channels, then sleep, then turn on hvps 
+# in our ramp up sequence
+# specity sleep time in seconds (this command causes 1 second of sleep)
+- sleep: 1

@@ -1,0 +1,66 @@
+settings:
+    refresh: 2.1
+    title: "[bold] :high_voltage: PDU :high_voltage: [/bold]"
+groups:
+    - hkp:
+        - 'pdu_hkp:counter':
+            alt: 'counter  '
+            format: 6d
+        - 'pdu_hkp:gcutime':
+            alt: 'gcutime  '
+        - 'pdu_hkp:vbat':
+            alt: 'vbat :lollipop:  '
+            format: 6d
+        - 'pdu_hkp:pdu_count':
+            alt: pdu_count
+            format: 3d
+    - 'ch0 - ch3':
+        - '@vbus_pdu0ch0':
+            style: white on color(166)
+            alt: ch0
+        - '@ibus_pdu0ch0':
+            style: white on color(166)
+            alt: '   '
+        - '@vbus_pdu0ch1':
+            style: white on color(173)
+            alt: ch1
+        - '@ibus_pdu0ch1':
+            style: white on color(173)
+            alt: '   '
+        - '@vbus_pdu0ch2':
+            style: white on color(166)
+            alt: ch2
+        - '@ibus_pdu0ch2':
+            style: white on color(166)
+            alt: '   '
+        - '@vbus_pdu0ch3':
+            style: white on color(173)
+            alt: ch3
+        - '@ibus_pdu0ch3':
+            style: white on color(173)
+            alt: '   '
+    - 'ch4 - ch7':
+        - '@vbus_pdu0ch4':
+            style: white on color(166)
+            alt: ch4
+        - '@ibus_pdu0ch4':
+            style: white on color(166)
+            alt: '   '
+        - '@vbus_pdu0ch5':
+            style: white on color(173)
+            alt: ch5
+        - '@ibus_pdu0ch5':
+            style: white on color(173)
+            alt: '   '
+        - '@vbus_pdu0ch6':
+            style: white on color(166)
+            alt: ch6
+        - '@ibus_pdu0ch6':
+            style: white on color(166)
+            alt: '   '
+        - '@vbus_pdu0ch7':
+            style: white on color(173)
+            alt: ch7
+        - '@ibus_pdu0ch7':
+            style: white on color(173)
+            alt: '   '

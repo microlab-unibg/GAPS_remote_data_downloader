@@ -1,0 +1,44 @@
+---
+# macro commands 
+
+# turn on card and turn on lv for select channels
+- tracker_power_turn_on_lv:
+    crate: 0
+    card: 1
+    conn: 
+      - 1
+      - 2
+
+# turn on hv and set channels 
+- tracker_power_turn_on_hv:
+    crate: 0
+    card: 1
+    chan:
+        - 1
+        - 4
+        - 7
+    pset: 255
+    vset: 250
+
+- tracker_power_turn_on_hv: # defaults to 250 V in absense of a spefication
+    crate: 0
+    card: 1
+    chan: [1,4,7]
+
+# ramp down HV
+- tracker_power_ramp_down_hv: 
+    crate: 0
+    card: 1
+    chan: 
+      - 0
+
+# turn off hv
+- tracker_power_power_off_hv:
+    crate: 0
+    card: 1
+
+# turn off low voltage and card
+- tracker_power_turn_off_lv: 
+    crate: 0
+    card: 1
+    conn: [0]

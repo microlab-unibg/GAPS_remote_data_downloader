@@ -1,0 +1,2 @@
+pybind11_add_module(merged_event_bindings merged_event_bindings.cpp)
+install(TARGETS merged_event_bindings DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})

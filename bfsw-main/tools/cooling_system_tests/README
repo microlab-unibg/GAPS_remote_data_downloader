@@ -1,0 +1,19 @@
+June 3, 2022
+
+the script bytes_to_udp.py reads raw bytes that were captured from the cooling system serial port, and then
+replays them on a UDP socket. I'm using socat to forward these UDP bytes to a TCP socket. rx_test.py connects
+to the socat TCP server and reads the bytes coming in.
+
+The socat command is:
+
+socat TCP4-LISTEN:54345,bind=127.0.0.1,fork,reuseaddr UDP4-RECV:43234,bind=127.0.0.1
+
+python calls:
+python bytes_to_udp.py cooling_system_bytes.dat 127.0.0.1 43234
+python rx_test.py 127.0.0.1 54345
+
+June 7, 2022
+
+Note that the above socat call can't handle more than one simultaneous connection (despite the fork option). I 
+think the TCP4-LISTEN side can handle it, but the problem is that the UDP port is already used by one 
+process, so the forked process gets an "address already in use" error.

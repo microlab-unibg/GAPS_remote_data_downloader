@@ -1,0 +1,17 @@
+---
+# command to turn on pdu channels
+# can specify channels in pdu0, pdu1, and/or pdu2
+# for each pdu, can specify channels from 0 to 7 inclusive
+- pdu_on:
+    pdu0: 
+      - 1 
+      - 2
+
+# command to turn off pdu channels 
+# same formatting as pdu_on
+- pdu_off: 
+    pdu0:
+      - 1
+      - 2
+    pdu1: 
+      - 4

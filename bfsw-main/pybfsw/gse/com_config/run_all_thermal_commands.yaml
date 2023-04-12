@@ -1,0 +1,49 @@
+---
+# turn on reservoir heater on-off controls with set temperature for the heaters to turn on and turn off
+- rh_ctrl_on:
+    temp_on: -45.4
+    temp_off: -45.0
+
+# turn on reservoir heater on-off controls, using the default temperature for one of the arguments
+- rh_ctrl_on:
+    temp_on: -45.4
+
+# turn on reservoir heater on-off controls, using the default values (on -45.5C, off -45.0C) for both:
+- rh_ctrl_on: 0
+
+# turn off reservoir heater on-off controls
+- rh_ctrl_off: 0
+
+# turn on dcdc converter for reservoir heaters: can specify 12V, 24V, or both 
+- rh_dcdc_on: 
+    - 24V # can also be 12V
+
+# turn off dcdc converters for reservoir heaters
+- rh_dcdc_off: 0
+
+# switch to spare reservoir heaters and power line
+- rh_switch: 0 
+
+# switch to backup reservoir rtds used for on-off control
+- rsv_rtd_switch: 0
+
+# turn on subheaters. Can specify subheater 1, 2, and/or 3 to turn on. Can specify time on in seconds 
+- sh_on:
+    - sh1: 50 
+    - sh3: 10 
+
+- sh_on:
+    - sh1 # turning sh1 on for default time of 60 s
+
+# turn off subheaters. Can specify subheater 1, 2, and/or 3 in same format as above
+- sh_off: 
+    - sh1 # can include sh1, sh2, or sh3
+    - sh3
+
+# turn on dcdc convertor for subheaters: can specity 24V, 48V, and/or 39V
+- sh_dcdc_on: 
+    - 24V # can be 48V, 39V, or 24V
+    - 48V # can be 48V, 39V, or 24V
+
+# turn off all dcdc convertors for subheaters :)
+- sh_dcdc_off: 0
