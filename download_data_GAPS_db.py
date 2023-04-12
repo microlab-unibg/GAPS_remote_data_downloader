@@ -10,7 +10,7 @@ from os.path import join
 import matplotlib.pyplot as plt
 
 sys.path.append(
-    r"/home/lucaghislotti/Downloads/prova_SSL/bfsw-main"
+    r"/home/lucaghislotti/Documents/GitHub/lucaghislo/GAPS_remote_data_downloader/bfsw-main"
 )
 
 # SSH port forwarding to GSE machine
@@ -117,8 +117,5 @@ filepath_folder = input("                Download folder path: ")
 
 datetime_start = datetime.strptime(datetime_str_start, r"%d/%m/%Y, %H:%M:%S")
 datetime_stop = datetime.strptime(datetime_str_start, r"%d/%m/%Y, %H:%M:%S")
-
-download_data(datetime_start, datetime_stop, filepath_folder)
-      " to " + str(datetime_stop) + "\n")
 
 download_data(datetime_start, datetime_stop, filepath_folder)
