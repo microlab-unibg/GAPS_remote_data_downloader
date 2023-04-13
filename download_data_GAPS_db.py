@@ -1,4 +1,3 @@
-from pybfsw.gse.gsequery import GSEQuery
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -10,8 +9,10 @@ from os.path import join
 import matplotlib.pyplot as plt
 
 sys.path.append(
-    r"/home/lucaghislotti/Documents/GitHub/lucaghislo/GAPS_remote_data_downloader/bfsw-main"
+    "/home/lucaghislotti/Documents/GitHub/lucaghislo/GAPS_remote_data_downloader/bfsw-main/pybfsw"
 )
+
+from pybfsw.gse.gsequery import GSEQuery
 
 # SSH port forwarding to GSE machine
 # ssh -L 44555:localhost:44555 nadir@128.32.13.79 -p 55225
