@@ -9,10 +9,11 @@ from os.path import join
 import matplotlib.pyplot as plt
 
 sys.path.append(
-    "/home/lucaghislotti/Documents/GitHub/lucaghislo/GAPS_remote_data_downloader/bfsw-main/pybfsw"
+    "/home/lucaghislotti/Documents/GitHub/lucaghislo/GAPS_remote_data_downloader/bfsw-main"
 )
 
 from pybfsw.gse.gsequery import GSEQuery
+
 
 # SSH port forwarding to GSE machine
 # ssh -L 44555:localhost:44555 nadir@128.32.13.79 -p 55225
@@ -117,6 +118,15 @@ datetime_str_stop = input("Stop datetime [dd/mm/yyyy, hh:mm:ss]: ")
 filepath_folder = input("                Download folder path: ")
 
 datetime_start = datetime.strptime(datetime_str_start, r"%d/%m/%Y, %H:%M:%S")
-datetime_stop = datetime.strptime(datetime_str_start, r"%d/%m/%Y, %H:%M:%S")
+datetime_stop = datetime.strptime(datetime_str_stop, r"%d/%m/%Y, %H:%M:%S")
 
-download_data(datetime_start, datetime_stop, filepath_folder)
+datetime_start_ts = datetime_to_timestamp(datetime_start.day, datetime_start.month,
+                                          datetime_start.year, datetime_start.hour, datetime_start.minute, datetime_start.second)
+datetime_stop_ts = datetime_to_timestamp(datetime_stop.day, datetime_stop.month,
+                                         datetime_stop.year, datetime_stop.hour, datetime_stop.minute, datetime_stop.second)
+
+print("\n*** DOWNLOADING DATA ***")
+print("START: " + str(datetime_start) + " [" + str(datetime_start_ts) + "]")
+print(" STOP: " + str(datetime_stop) + " [" + str(datetime_stop_ts) + "]\n")
+
+download_data(datetime_start_ts, datetime_stop_ts, filepath_folder)
