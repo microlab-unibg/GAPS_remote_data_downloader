@@ -25,9 +25,8 @@ from pybfsw.gse.gsequery import GSEQuery
 
 
 def pd_to_csv(pd, filepath, datetime_start, datetime_stop):
-    filename = "data_" + str(datetime_start.day) + \
-        "_" + datetime_start.month + "_" + datetime_start.year + "_" + datetime_start.hour + \
-        "_" + datetime_start.minute + "_" + datetime_start.second + ".csv"
+    filename = "data_" + str(datetime_start.day) + "_" + str(datetime_start.month) + "_" + str(datetime_start.year) + "_" + str(datetime_start.hour) + "_" + str(datetime_start.minute) + "_" + str(datetime_start.second) + "_to_" + str(datetime_stop.day) + "_" + str(datetime_stop.month) + "_" + str(datetime_stop.year) + "_" + str(datetime_stop.hour) + "_" + str(datetime_stop.minute) + "_" + str(datetime_stop.second) +".csv"
+
     out_filepath = join(filepath, filename)
     pd.to_csv(out_filepath)
 
@@ -38,7 +37,14 @@ def pd_to_csv(pd, filepath, datetime_start, datetime_stop):
 # row, module, channel, adcdata, asiceventcode = DownloadData(1676468100, 1676471700)
 
 
-def download_data(tstart, tstop, fp):
+def download_data(datetime_start, datetime_stop, fp):
+
+    # Datetime to timestamp conversion
+    tstart = datetime_to_timestamp(datetime_start.day, datetime_start.month,
+                                          datetime_start.year, datetime_start.hour, datetime_start.minute, datetime_start.second)
+    tstop = datetime_to_timestamp(datetime_stop.day, datetime_stop.month,
+                                         datetime_stop.year, datetime_stop.hour, datetime_stop.minute, datetime_stop.second)
+
     sql = (
         "select gfptrackerpacket.row, module, channel, adcdata, asiceventcode, gfptrackerevent.eventid, gfptrackerevent.eventtime, gfptrackerpacket.gcutime, gfptrackerpacket.sysid - 128 from gfptrackerhit "
         "join gfptrackerevent on gfptrackerevent.rowid = gfptrackerhit.parent "
@@ -49,9 +55,8 @@ def download_data(tstart, tstop, fp):
     q = GSEQuery(path="127.0.0.1:44555")
     q.dbi.query_start(sql)
 
-    bar = IncrementalBar(
-        f"Downloading data from tstart={tstart} to tstop={tstop}:", max=tstop - tstart
-    )
+    print("REQUESTED: " + str(tstop-tstart) + " seconds of data")
+    bar = IncrementalBar(max=tstop - tstart)
 
     downloaded_data_df = pd.DataFrame(
         columns=[
@@ -97,9 +102,7 @@ def download_data(tstart, tstop, fp):
         res = np.array(q.dbi.query_fetch(100000))
 
     bar.finish()
-    pd_to_csv(downloaded_data_df, filepath=fp)
-
-    # return downloaded_data_df
+    pd_to_csv(downloaded_data_df, fp, datetime_start, datetime_stop)
 
 
 # Datetime to timestamp converter function
@@ -114,8 +117,8 @@ def datetime_to_timestamp(day, month, year, hour, minutes, seconds=0):
 
 # Ask user input for data taking
 datetime_str_start = input("Start datetime [dd/mm/yyyy, hh:mm:ss]: ")
-datetime_str_stop = input("Stop datetime [dd/mm/yyyy, hh:mm:ss]: ")
-filepath_folder = input("                Download folder path: ")
+datetime_str_stop = input(" Stop datetime [dd/mm/yyyy, hh:mm:ss]: ")
+filepath_folder = input("                 Download folder path: ")
 
 datetime_start = datetime.strptime(datetime_str_start, r"%d/%m/%Y, %H:%M:%S")
 datetime_stop = datetime.strptime(datetime_str_stop, r"%d/%m/%Y, %H:%M:%S")
@@ -129,4 +132,4 @@ print("\n*** DOWNLOADING DATA ***")
 print("START: " + str(datetime_start) + " [" + str(datetime_start_ts) + "]")
 print(" STOP: " + str(datetime_stop) + " [" + str(datetime_stop_ts) + "]\n")
 
-download_data(datetime_start_ts, datetime_stop_ts, filepath_folder)
+download_data(datetime_start, datetime_stop, filepath_folder)
