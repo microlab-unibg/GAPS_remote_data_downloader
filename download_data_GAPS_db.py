@@ -28,6 +28,7 @@ def pd_to_csv(pd, filepath, datetime_start, datetime_stop):
     filename = "data_" + str(datetime_start.day) + "_" + str(datetime_start.month) + "_" + str(datetime_start.year) + "_" + str(datetime_start.hour) + "_" + str(datetime_start.minute) + "_" + str(datetime_start.second) + "_to_" + str(datetime_stop.day) + "_" + str(datetime_stop.month) + "_" + str(datetime_stop.year) + "_" + str(datetime_stop.hour) + "_" + str(datetime_stop.minute) + "_" + str(datetime_stop.second) +".csv"
 
     out_filepath = join(filepath, filename)
+    print("\nSAVED:" + filename)
     pd.to_csv(out_filepath)
 
 # It downloads data from the database, and returns it as a pandas dataframe
