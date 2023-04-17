@@ -9,7 +9,7 @@ from os.path import join
 import matplotlib.pyplot as plt
 
 sys.path.append(
-    "/home/lucaghislotti/Documents/GitHub/lucaghislo/GAPS_remote_data_downloader/bfsw-main"
+    "/home/lucaghislotti/Documents/GitHub/GAPS_remote_data_downloader/bfsw-main"
 )
 
 from pybfsw.gse.gsequery import GSEQuery
@@ -51,7 +51,7 @@ def download_data(datetime_start, datetime_stop, fp):
         "join gfptrackerevent on gfptrackerevent.rowid = gfptrackerhit.parent "
         "join gfptrackerpacket on gfptrackerpacket.rowid = gfptrackerevent.parent "
     )
-    sql += f"where gcutime > {tstart} and gcutime < {tstop}"
+    sql += f"where gcutime >= {tstart} and gcutime < {tstop}"
 
     q = GSEQuery(path="127.0.0.1:44555")
     q.dbi.query_start(sql)
