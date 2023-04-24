@@ -7,7 +7,7 @@ This repository contains all the code related to the Python function that allows
 ![image](https://user-images.githubusercontent.com/36998696/231707102-47356f70-a4fc-48d0-b405-9badaa8f1623.png)
 
 ### Data download
-`python donwload_data_GAPS_db.py`
+`python download_data_GAPS_db.py`
 
 ![image](https://user-images.githubusercontent.com/36998696/231707949-f73beff6-ae3b-4496-8c43-9849b49fb0ca.png)
 
